@@ -28,7 +28,7 @@ function Header() {
     <div className="top-header">
       <div className="header-title">{pageTitle}</div>
       <div className="header-right">
-        <div style={{ display: 'flex', gap: '12px' }}>
+        <div className="hide-mobile" style={{ gap: '12px' }}>
           <button
             className="btn btn-primary"
             onClick={() => navigate('/visits')}
