@@ -5,12 +5,53 @@ function Branches() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  // Modal states
+  const [showModal, setShowModal] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState(null);
+
+  // Form states
+  const [formData, setFormData] = useState({
+    name: '',
+    code: '',
+    address: '',
+    suburb: '',
+    state: '',
+    phone: ''
+  });
+
+  const loadBranches = () => {
+    setLoading(true);
     api.getBranches()
       .then(setData)
       .catch((err) => console.error(err))
       .finally(() => setLoading(false));
+  };
+
+  useEffect(() => {
+    loadBranches();
   }, []);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSaving(true);
+    setError(null);
+    try {
+      await api.createBranch(formData);
+      setShowModal(false);
+      setFormData({ name: '', code: '', address: '', suburb: '', state: '', phone: '' });
+      loadBranches();
+    } catch (err) {
+      setError(err?.errors?.message || err?.message || 'Failed to create branch. Code may already exist.');
+    } finally {
+      setSaving(false);
+    }
+  };
 
   return (
     <div className="page">
@@ -19,7 +60,7 @@ function Branches() {
           <h1 className="page-title">Branches</h1>
           <p className="page-subtitle">Manage Caffissimo franchise locations</p>
         </div>
-        <button className="btn btn-primary">+ Add Branch</button>
+        <button className="btn btn-primary" onClick={() => setShowModal(true)}>+ Add Branch</button>
       </div>
 
       {loading ? <p>Loading branches...</p> : (
@@ -73,6 +114,60 @@ function Branches() {
 
             </div>
           ))}
+        </div>
+      )}
+
+      {/* Add Branch Modal */}
+      {showModal && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+          backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
+        }}>
+          <div className="card" style={{ width: '100%', maxWidth: '500px', margin: '20px', maxHeight: '90vh', overflowY: 'auto' }}>
+            <h2 style={{ marginBottom: '20px', color: '#2d3748' }}>Add New Branch</h2>
+            {error && <div className="alert alert-error" style={{ marginBottom: '20px' }}>{error}</div>}
+            
+            <form onSubmit={handleSubmit} className="form-stack">
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                <div className="form-group">
+                  <label>Branch Name *</label>
+                  <input type="text" name="name" value={formData.name} onChange={handleInputChange} required placeholder="e.g. Caffissimo CBD" />
+                </div>
+                <div className="form-group">
+                  <label>Branch Code *</label>
+                  <input type="text" name="code" value={formData.code} onChange={handleInputChange} required placeholder="e.g. CBD01" />
+                </div>
+              </div>
+              
+              <div className="form-group">
+                <label>Address</label>
+                <input type="text" name="address" value={formData.address} onChange={handleInputChange} placeholder="e.g. 123 Main St" />
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                <div className="form-group">
+                  <label>Suburb</label>
+                  <input type="text" name="suburb" value={formData.suburb} onChange={handleInputChange} placeholder="e.g. Melbourne" />
+                </div>
+                <div className="form-group">
+                  <label>State</label>
+                  <input type="text" name="state" value={formData.state} onChange={handleInputChange} placeholder="e.g. VIC" />
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label>Phone Number</label>
+                <input type="text" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="e.g. 03 9876 5432" />
+              </div>
+
+              <div style={{ display: 'flex', gap: '12px', marginTop: '20px' }}>
+                <button type="button" className="btn btn-secondary" style={{ flex: 1 }} onClick={() => setShowModal(false)}>Cancel</button>
+                <button type="submit" className="btn btn-primary" style={{ flex: 1 }} disabled={saving}>
+                  {saving ? 'Saving...' : 'Add Branch'}
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       )}
     </div>
