@@ -12,6 +12,7 @@
 - [Installation](#installation)
 - [Environment Setup](#environment-setup)
 - [Running the App](#running-the-app)
+- [Deployment with PM2](#deployment-with-pm2)
 - [Project Structure](#project-structure)
 - [Available Pages](#available-pages)
 - [API Integration](#api-integration)
@@ -132,6 +133,41 @@ The app will start at `http://localhost:5177`.
 | `npm run build` | Build optimised production bundle to `dist/` |
 | `npm run preview` | Preview the production build locally |
 | `npm run lint` | Run ESLint to check code quality |
+
+---
+
+## Deployment with PM2
+
+To keep the development or preview server running continuously:
+
+### 1. Installation
+Install PM2 globally using npm:
+```bash
+npm install -g pm2
+```
+
+### 2. Start Your App
+Navigate to the `admin-v2-app` folder and run:
+```bash
+# To run the development server
+pm2 start npm --name "caffissimo-admin" -- run dev
+
+# To run the production preview (after npm run build)
+pm2 start npm --name "caffissimo-admin" -- run preview
+```
+
+### 3. Enable Startup Persistence
+To ensure the app starts after a server reboot:
+1. Run `pm2 startup`. Follow the instructions to copy and paste the command it generates.
+2. Save your current process list by running:
+```bash
+pm2 save
+```
+
+### 4. Manage Your App
+- `pm2 status`: View running processes.
+- `pm2 logs`: View real-time application logs.
+- `pm2 stop caffissimo-admin`: Stop the application.
 
 ---
 
