@@ -23,7 +23,7 @@ const superAdminNav = [
   { to: '/visit-rewards', label: 'Visit Rewards', icon: <svg width="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1h-4v-2h4zM9 4c.55 0 1 .45 1 1h-4c0-.55.45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z" /></svg> },
 ];
 
-function Sidebar() {
+function Sidebar({ isOpen, onClose }) {
   const user = api.getUser();
   const role = user?.role || 'operator';
 
@@ -52,9 +52,21 @@ function Sidebar() {
   }
 
   return (
-    <aside id="default-sidebar" className="sidebar fixed top-0 left-0 z-40 w-64 h-full transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-      <div className="sidebar-header" style={{ padding: '20px 16px', display: 'flex', justifyContent: 'center' }}>
+    <aside 
+      id="default-sidebar" 
+      className={`sidebar fixed top-0 left-0 z-40 w-64 h-full transition-transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} sm:translate-x-0`} 
+      aria-label="Sidebar"
+    >
+      <div className="sidebar-header" style={{ padding: '20px 16px', display: 'flex', justifyContent: 'center', position: 'relative' }}>
         <img src="/sidebar-logo.png" alt="Caffissimo Logo" style={{ height: '48px', width: 'auto', objectFit: 'contain' }} />
+        
+        {/* Mobile Close Button */}
+        <button className="sidebar-close-btn" onClick={onClose}>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
       </div>
 
       <nav className="sidebar-nav">
@@ -65,6 +77,9 @@ function Sidebar() {
                 to={item.to}
                 end={item.to === '/'}
                 className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+                onClick={() => {
+                  if (window.innerWidth < 640) onClose();
+                }}
               >
                 <div className="nav-icon">{item.icon}</div>
                 {item.label}

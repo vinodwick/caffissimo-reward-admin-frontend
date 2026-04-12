@@ -126,18 +126,84 @@ h6 {
 .main-side {
   width: 100%;
   transition: margin-left 0.3s;
+  padding-bottom: 80px;
+  /* Add padding for bottom nav on mobile */
+}
+
+.iq-page-content {
   padding: 1rem;
-  padding-top: 0;
 }
 
 @media (min-width: 640px) {
   .main-side {
     margin-left: 250px;
     width: calc(100% - 250px);
-    padding: 1rem;
-    padding-top: 0;
+    padding-bottom: 0;
+    /* No bottom nav on desktop */
   }
 }
+
+/* ─── Responsive Utilities ─── */
+.hide-mobile {
+  display: flex;
+}
+
+.show-mobile {
+  display: none !important;
+}
+
+@media (max-width: 640px) {
+  .hide-mobile {
+    display: none !important;
+  }
+
+  .show-mobile {
+    display: flex !important;
+  }
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+  padding: 0 10px;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.bottom-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 500;
+  transition: all 0.2s;
+  flex: 1;
+}
+
+.bottom-nav-item.active {
+  color: var(--primary);
+}
+
+.bottom-nav-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 
 .main-wrapper {
   flex: 1;
@@ -203,12 +269,44 @@ h6 {
   font-size: 18px;
 }
 
-/* ─── Main Content ─── */
-.main-content {
-  flex: 1;
-  padding: 30px 40px;
-  overflow-y: auto;
+/* ─── Mobile Sidebar Overlay & Controls ─── */
+.sidebar-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  z-index: 35; /* Just below the sidebar (z-40) */
+  animation: fadeIn 0.3s ease-in-out;
 }
+
+.sidebar-close-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--dark);
+  cursor: pointer;
+  padding: 5px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+
+@media (max-width: 640px) {
+  .sidebar-close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 
 /* ─── Components ─── */
 .card {

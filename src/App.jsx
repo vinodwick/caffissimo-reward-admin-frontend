@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Dashboard from './pages/Dashboard';
@@ -18,6 +18,7 @@ import Help from './pages/Help';
 import Login from './pages/Login';
 import api from './services/api';
 import Header from './components/Header';
+import BottomNav from './components/BottomNav';
 import './App.css';
 
 function RequireAuth({ children }) {
@@ -28,6 +29,11 @@ function RequireAuth({ children }) {
 }
 
 function App() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+  const closeSidebar = () => setSidebarOpen(false);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -35,7 +41,16 @@ function App() {
         <Route path="*" element={
           <RequireAuth>
             <div className="iq-app-wrapper">
-              <Sidebar />
+              <Sidebar isOpen={sidebarOpen} onClose={closeSidebar} />
+              
+              {/* Mobile Sidebar Overlay */}
+              {sidebarOpen && (
+                <div 
+                  className="sidebar-backdrop show-mobile" 
+                  onClick={closeSidebar}
+                ></div>
+              )}
+
               <main className="main-side p-4 sm:ml-64">
                 <div className="iq-navbar-header banner-bg"></div>
                 <Header />
@@ -63,6 +78,7 @@ function App() {
                   <p style={{ marginBottom: '4px' }}>&copy; {new Date().getFullYear()} Caffissimo Australia. All rights reserved.</p>
                   <p>Developed By <a href="https://aakiv.com" target="_blank" rel="noreferrer" style={{color: '#2b6cb0', fontWeight: 'bold', textDecoration: 'none'}}>AAKIV PVT LTD</a>, Sri Lanka</p>
                 </footer>
+                <BottomNav onMenuClick={toggleSidebar} />
               </main>
             </div>
           </RequireAuth>

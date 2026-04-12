@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import api from '../services/api';
 
 function Login() {
@@ -6,6 +6,13 @@ function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,34 +32,48 @@ function Login() {
   };
 
   return (
-    <div style={{ display: 'flex', height: '100vh', backgroundColor: '#fcfcfc', fontFamily: "'Inter', sans-serif" }}>
+    <div style={{ 
+      display: 'flex', 
+      flexDirection: isMobile ? 'column' : 'row',
+      height: '100vh', 
+      backgroundColor: '#fcfcfc', 
+      fontFamily: "'Inter', sans-serif",
+      position: 'relative',
+      overflow: 'hidden'
+    }}>
       {/* Left side: Background Image */}
       <div style={{ 
-        flex: 1.2, 
+        flex: isMobile ? 'none' : 1.2, 
+        position: isMobile ? 'absolute' : 'relative',
+        top: 0, left: 0, right: 0, bottom: 0,
         backgroundImage: "url('/login-bg.jpg')", 
         backgroundSize: 'cover', 
         backgroundPosition: 'center',
-        position: 'relative',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        padding: '60px'
+        padding: isMobile ? '30px' : '60px',
+        zIndex: 1
       }}>
         {/* Premium Overlay */}
         <div style={{
           position: 'absolute',
           top: 0, left: 0, right: 0, bottom: 0,
-          background: 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%)',
+          background: isMobile 
+            ? 'linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%)' 
+            : 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%)',
         }}></div>
         
-        <div style={{ position: 'relative', color: 'white', zIndex: 1, maxWidth: '500px' }}>
-          <h2 style={{ fontSize: '42px', fontWeight: '700', marginBottom: '16px', letterSpacing: '-0.5px' }}>
-            Elevate Your Experience
-          </h2>
-          <p style={{ fontSize: '18px', opacity: 0.9, lineHeight: 1.6, fontWeight: '300' }}>
-            Manage the Caffissimo loyalty ecosystem, track branch performance, and reward your customers seamlessly.
-          </p>
-        </div>
+        {!isMobile && (
+          <div style={{ position: 'relative', color: 'white', zIndex: 1, maxWidth: '500px' }}>
+            <h2 style={{ fontSize: '42px', fontWeight: '700', marginBottom: '16px', letterSpacing: '-0.5px' }}>
+              Elevate Your Experience
+            </h2>
+            <p style={{ fontSize: '18px', opacity: 0.9, lineHeight: 1.6, fontWeight: '300' }}>
+              Manage the Caffissimo loyalty ecosystem, track branch performance, and reward your customers seamlessly.
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Right side: Login Form */}
@@ -61,13 +82,22 @@ function Login() {
         display: 'flex', 
         justifyContent: 'center', 
         alignItems: 'center',
-        backgroundColor: '#fff',
-        boxShadow: '-20px 0 40px rgba(0,0,0,0.08)',
-        zIndex: 10
+        backgroundColor: isMobile ? 'transparent' : '#fff',
+        boxShadow: isMobile ? 'none' : '-20px 0 40px rgba(0,0,0,0.08)',
+        zIndex: 10,
+        padding: '20px'
       }}>
-        <div style={{ width: '100%', maxWidth: '440px', padding: '0 40px' }}>
-          <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-            <h1 style={{ color: 'var(--primary, #2A3F54)', marginBottom: '12px', fontSize: '36px', fontWeight: '800', letterSpacing: '-1px' }}>
+        <div style={{ 
+          width: '100%', 
+          maxWidth: '440px', 
+          padding: isMobile ? '40px 30px' : '0 40px',
+          backgroundColor: isMobile ? 'rgba(255, 255, 255, 0.95)' : 'transparent',
+          borderRadius: isMobile ? '24px' : '0',
+          backdropFilter: isMobile ? 'blur(10px)' : 'none',
+          boxShadow: isMobile ? '0 20px 40px rgba(0,0,0,0.2)' : 'none'
+        }}>
+          <div style={{ textAlign: 'center', marginBottom: isMobile ? '32px' : '48px' }}>
+            <h1 style={{ color: 'var(--primary, #2A3F54)', marginBottom: '12px', fontSize: isMobile ? '28px' : '36px', fontWeight: '800', letterSpacing: '-1px' }}>
               Caffissimo
             </h1>
             <p style={{ color: '#718096', fontSize: '16px' }}>Admin Portal Access</p>
