@@ -29,16 +29,16 @@ function Header() {
       <div className="header-title">{pageTitle}</div>
       <div className="header-right">
         <div style={{ display: 'flex', gap: '12px' }}>
-          <button 
-            className="btn btn-primary" 
+          <button
+            className="btn btn-primary"
             onClick={() => navigate('/visits')}
             style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '8px 16px', borderRadius: '8px', border: 'none', cursor: 'pointer', fontSize: '14px', fontWeight: '500' }}
           >
-            <svg width="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+            <svg width="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" /></svg>
             Record Visit
           </button>
-          
-          <button 
+
+          <button
             onClick={() => navigate('/redeem')}
             style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '8px 16px', borderRadius: '8px', cursor: 'pointer', fontSize: '14px', fontWeight: '500', backgroundColor: '#FFF5F5', color: '#E53E3E', border: '1px solid #FED7D7' }}
           >
@@ -52,9 +52,9 @@ function Header() {
         <div style={{ cursor: 'pointer', color: 'var(--secondary)' }}>
           <svg width="25" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/></svg>
         </div> */}
-        <div className="profile-avatar">
+        {/* <div className="profile-avatar">
           {user?.name?.charAt(0) ?? 'U'}
-        </div>
+        </div> */}
       </div>
     </div>
   );

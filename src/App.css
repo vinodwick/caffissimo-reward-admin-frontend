@@ -124,8 +124,19 @@ h6 {
 }
 
 .main-side {
-  padding-left: calc(4.25rem * 4);
-  padding-right: 1rem;
+  width: 100%;
+  transition: margin-left 0.3s;
+  padding: 1rem;
+  padding-top: 0;
+}
+
+@media (min-width: 640px) {
+  .main-side {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    padding: 1rem;
+    padding-top: 0;
+  }
 }
 
 .main-wrapper {

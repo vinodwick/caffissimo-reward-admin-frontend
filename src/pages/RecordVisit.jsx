@@ -116,7 +116,7 @@ function RecordVisit() {
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(300px, 1fr) minmax(300px, 1fr)', gap: '24px', alignItems: 'start' }}>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
         
         {/* Verification & Transaction Form */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
