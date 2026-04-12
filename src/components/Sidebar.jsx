@@ -53,15 +53,8 @@ function Sidebar() {
 
   return (
     <aside id="default-sidebar" className="sidebar fixed top-0 left-0 z-40 w-64 h-full transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-      <div className="sidebar-header">
-        <div className="sidebar-logo">
-          {systemLogo ? (
-            <img src={`http://localhost:8000${systemLogo}`} alt="Brand Logo" style={{ height: '32px', width: 'auto', objectFit: 'contain' }} />
-          ) : (
-            <svg width="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 22h20L12 2zm0 4.5l6.5 13H5.5L12 6.5z" /></svg>
-          )}
-        </div>
-        <h2>{systemName}</h2>
+      <div className="sidebar-header" style={{ padding: '20px 16px', display: 'flex', justifyContent: 'center' }}>
+        <img src="/sidebar-logo.png" alt="Caffissimo Logo" style={{ height: '48px', width: 'auto', objectFit: 'contain' }} />
       </div>
 
       <nav className="sidebar-nav">
