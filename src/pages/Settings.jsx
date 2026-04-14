@@ -102,8 +102,8 @@ function Settings() {
               padding: '12px 4px',
               background: 'none',
               border: 'none',
-              borderBottom: activeTab === tab.id ? '2px solid #2b6cb0' : '2px solid transparent',
-              color: activeTab === tab.id ? '#2b6cb0' : '#718096',
+              borderBottom: activeTab === tab.id ? '2px solid #6F4E37' : '2px solid transparent',
+              color: activeTab === tab.id ? '#6F4E37' : '#718096',
               fontWeight: activeTab === tab.id ? 600 : 500,
               cursor: 'pointer',
               fontSize: '15px',
@@ -149,7 +149,7 @@ function Settings() {
             </div>
             
             <div style={{ marginTop: '24px' }}>
-              <button type="submit" className="btn btn-primary" style={{ background: '#2b6cb0' }}>Inject Custom Branding</button>
+              <button type="submit" className="btn btn-primary" style={{ background: '#6F4E37' }}>Inject Custom Branding</button>
             </div>
           </div>
         </form>
@@ -251,8 +251,8 @@ function Settings() {
                   <td style={{ padding: '16px 24px' }}>
                     <span style={{ 
                       padding: '4px 8px', borderRadius: '4px', fontSize: '12px', fontWeight: 'bold',
-                      background: route.method.includes('GET') ? '#e6fffa' : route.method.includes('POST') ? '#ebf8ff' : route.method.includes('PUT') ? '#fffff0' : '#fff5f5',
-                      color: route.method.includes('GET') ? '#319795' : route.method.includes('POST') ? '#3182ce' : route.method.includes('PUT') ? '#d69e2e' : '#e53e3e' 
+                      background: route.method.includes('GET') ? '#e6fffa' : route.method.includes('POST') ? '#F0E6DD' : route.method.includes('PUT') ? '#fffff0' : '#fff5f5',
+                      color: route.method.includes('GET') ? '#319795' : route.method.includes('POST') ? '#8C6239' : route.method.includes('PUT') ? '#d69e2e' : '#e53e3e' 
                     }}>
                       {route.method}
                     </span>

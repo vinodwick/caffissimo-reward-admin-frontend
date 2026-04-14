@@ -16,7 +16,7 @@ function Reports() {
   }, [range]);
 
   const getFunnelColor = (label) => {
-    if (label === 'Earned') return '#3b82f6';
+    if (label === 'Earned') return '#D4A373';
     if (label === 'Activated') return '#8b5cf6';
     if (label === 'Redeemed') return '#10b981';
     return '#9ca3af';
@@ -51,8 +51,8 @@ function Reports() {
               padding: '12px 4px',
               background: 'none',
               border: 'none',
-              borderBottom: activeTab === tab.id ? '2px solid #2b6cb0' : '2px solid transparent',
-              color: activeTab === tab.id ? '#2b6cb0' : '#718096',
+              borderBottom: activeTab === tab.id ? '2px solid #6F4E37' : '2px solid transparent',
+              color: activeTab === tab.id ? '#6F4E37' : '#718096',
               fontWeight: activeTab === tab.id ? 600 : 500,
               cursor: 'pointer',
               fontSize: '15px',
@@ -75,7 +75,7 @@ function Reports() {
                   {data.summary.map(s => (
                     <div className="summary-row" key={s.label} style={{ display: 'flex', flexDirection: 'column', background: '#f8fafc', padding: '20px', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
                       <span style={{ fontSize: '13px', color: '#718096', textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.5px', marginBottom: '8px' }}>{s.label}</span>
-                      <strong style={{ fontSize: '28px', color: '#2b6cb0' }}>{s.value}</strong>
+                      <strong style={{ fontSize: '28px', color: '#6F4E37' }}>{s.value}</strong>
                     </div>
                   ))}
                 </div>
@@ -141,7 +141,7 @@ function Reports() {
                   <tbody>
                     {(data.branchPerformance || []).map(b => (
                       <tr key={b.id} style={{ borderBottom: '1px solid #edf2f7' }}>
-                        <td style={{ padding: '16px 24px', fontWeight: 500, color: '#2b6cb0' }}>{b.name}</td>
+                        <td style={{ padding: '16px 24px', fontWeight: 500, color: '#6F4E37' }}>{b.name}</td>
                         <td style={{ padding: '16px 24px', textAlign: 'right', color: '#4a5568' }}>{b.visits.toLocaleString()}</td>
                         <td style={{ padding: '16px 24px', textAlign: 'right', color: '#4a5568' }}>{b.points.toLocaleString()}</td>
                         <td style={{ padding: '16px 24px', textAlign: 'right', color: '#4a5568' }}>{b.rewards.toLocaleString()}</td>
@@ -168,7 +168,7 @@ function Reports() {
                 </div>
                 
                 <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start pb-4">
-                  <div style={{ position: 'relative', width: '120px', height: '120px', borderRadius: '50%', background: `conic-gradient(#3182ce ${(data.customerEngagement.active_in_period/Math.max(data.customerEngagement.total_customers, 1))*100}%, #e2e8f0 0)` }}>
+                  <div style={{ position: 'relative', width: '120px', height: '120px', borderRadius: '50%', background: `conic-gradient(#8C6239 ${(data.customerEngagement.active_in_period/Math.max(data.customerEngagement.total_customers, 1))*100}%, #e2e8f0 0)` }}>
                     <div style={{ position: 'absolute', top: '20px', left: '20px', right: '20px', bottom: '20px', background: 'white', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '20px', color: '#2d3748' }}>
                       {Math.round((data.customerEngagement.active_in_period/Math.max(data.customerEngagement.total_customers, 1))*100)}%
                     </div>
@@ -176,7 +176,7 @@ function Reports() {
                   <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '16px' }}>
                     <div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-                        <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#3182ce' }}></div>
+                        <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#8C6239' }}></div>
                         <span style={{ fontSize: '14px', fontWeight: 600, color: '#4a5568' }}>Active Customers</span>
                       </div>
                       <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#2d3748', marginLeft: '20px' }}>{data.customerEngagement.active_in_period}</div>

@@ -72,7 +72,7 @@ function ViewCustomer() {
                 <span style={{ fontSize: '18px', opacity: 0.7 }}>📱</span>
                 <div>
                   <div style={{ fontSize: '12px', color: '#a0aec0', fontWeight: 600 }}>Phone</div>
-                  <div style={{ fontWeight: 500, color: '#2b6cb0' }}>{customer.phone_number}</div>
+                  <div style={{ fontWeight: 500, color: '#6F4E37' }}>{customer.phone_number}</div>
                 </div>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -136,7 +136,7 @@ function ViewCustomer() {
             <div className="flex flex-col sm:flex-row gap-6 mb-6">
               <div style={{ flex: 1, background: '#f8fafc', padding: '16px', borderRadius: '12px', textAlign: 'center', border: '1px solid #e2e8f0' }}>
                 <div style={{ fontSize: '12px', color: '#718096', textTransform: 'uppercase', fontWeight: 600, marginBottom: '4px' }}>Total Points</div>
-                <div style={{ fontSize: '32px', fontWeight: 'bold', color: '#2b6cb0' }}>{customer.points_balance}</div>
+                <div style={{ fontSize: '32px', fontWeight: 'bold', color: '#6F4E37' }}>{customer.points_balance}</div>
               </div>
               <div style={{ flex: 1, background: '#f8fafc', padding: '16px', borderRadius: '12px', textAlign: 'center', border: '1px solid #e2e8f0' }}>
                 <div style={{ fontSize: '12px', color: '#718096', textTransform: 'uppercase', fontWeight: 600, marginBottom: '4px' }}>Total Visits</div>
@@ -191,7 +191,7 @@ function ViewCustomer() {
                       <td style={{ padding: '12px 20px', color: '#4a5568' }}>{v.branch?.name || '—'}</td>
                       <td style={{ padding: '12px 20px', color: '#4a5568', fontWeight: 500 }}>${v.purchase_amount}</td>
                       <td style={{ padding: '12px 20px' }}>
-                        <span style={{ background: '#ebf8ff', color: '#2b6cb0', padding: '4px 8px', borderRadius: '12px', fontSize: '12px', fontWeight: 'bold' }}>
+                        <span style={{ background: '#F0E6DD', color: '#6F4E37', padding: '4px 8px', borderRadius: '12px', fontSize: '12px', fontWeight: 'bold' }}>
                           {v.cycle_visit_number}/7
                         </span>
                       </td>

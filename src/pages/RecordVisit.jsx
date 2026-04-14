@@ -145,8 +145,13 @@ function RecordVisit() {
                   style={{ flex: 1, background: selectedCustomer ? '#f8fafc' : 'white' }}
                 />
                 {!selectedCustomer ? (
-                  <button type="button" className="btn btn-secondary" onClick={() => setIsScanning(!isScanning)} style={{ padding: '8px 16px' }}>
-                    {isScanning ? 'Close' : '📷 QR'}
+                  <button type="button" className="btn btn-secondary flex items-center gap-2 justify-center" onClick={() => setIsScanning(!isScanning)} style={{ padding: '8px 16px', minWidth: '110px' }}>
+                    {isScanning ? 'Close' : (
+                      <>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                        Scan QR
+                      </>
+                    )}
                   </button>
                 ) : (
                   <button type="button" className="btn" onClick={clearSelection} style={{ background: '#fee2e2', color: '#991b1b', border: '1px solid #fca5a5' }}>
@@ -220,7 +225,7 @@ function RecordVisit() {
                   onChange={(e) => setAmount(e.target.value)}
                   required
                   disabled={!selectedCustomer}
-                  style={{ fontSize: '18px', fontWeight: 'bold', color: '#2b6cb0' }}
+                  style={{ fontSize: '18px', fontWeight: 'bold', color: '#6F4E37' }}
                 />
               </div>
               <div className="form-group" style={{ marginBottom: '16px' }}>
@@ -257,13 +262,13 @@ function RecordVisit() {
         {/* Dynamic State Info / Result Panel */}
         <div style={{ position: 'sticky', top: '24px' }}>
           {selectedCustomer && !result ? (
-            <div className="card" style={{ padding: '24px', background: '#ebf8ff', border: '1px solid #bee3f8', animation: 'fadeIn 0.5s ease-out' }}>
+            <div className="card" style={{ padding: '24px', background: '#F0E6DD', border: '1px solid #bee3f8', animation: 'fadeIn 0.5s ease-out' }}>
               <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-                <div style={{ width: '64px', height: '64px', background: '#3182ce', color: 'white', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px', fontWeight: 'bold', margin: '0 auto 12px auto' }}>
+                <div style={{ width: '64px', height: '64px', background: '#8C6239', color: 'white', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px', fontWeight: 'bold', margin: '0 auto 12px auto' }}>
                   {selectedCustomer.first_name?.[0] || 'G'}
                 </div>
                 <h3 style={{ margin: '0 0 4px 0', fontSize: '18px', color: '#2c5282' }}>{selectedCustomer.first_name} {selectedCustomer.last_name || ''}</h3>
-                <p style={{ margin: 0, color: '#2b6cb0', fontWeight: 600 }}>{selectedCustomer.phone_number}</p>
+                <p style={{ margin: 0, color: '#6F4E37', fontWeight: 600 }}>{selectedCustomer.phone_number}</p>
               </div>
               
               <div style={{ background: 'white', padding: '16px', borderRadius: '8px', boxShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>

@@ -71,7 +71,7 @@ function Branches() {
               {/* Header */}
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-                  <div style={{ width: '48px', height: '48px', background: '#ebf8ff', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px' }}>
+                  <div style={{ width: '48px', height: '48px', background: '#F0E6DD', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px' }}>
                     🏪
                   </div>
                   <div>
@@ -97,11 +97,11 @@ function Branches() {
               {/* Stats Box */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', background: '#f8fafc', padding: '16px', borderRadius: '12px', marginBottom: '24px' }}>
                 <div style={{ textAlign: 'center' }}>
-                  <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#2b6cb0' }}>{b.customers_count || 0}</div>
+                  <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#6F4E37' }}>{b.customers_count || 0}</div>
                   <div style={{ fontSize: '12px', color: '#718096', textTransform: 'uppercase', fontWeight: 600, marginTop: '4px' }}>Customers</div>
                 </div>
                 <div style={{ textAlign: 'center' }}>
-                  <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#2b6cb0' }}>{(b.visits_count || 0).toLocaleString()}</div>
+                  <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#6F4E37' }}>{(b.visits_count || 0).toLocaleString()}</div>
                   <div style={{ fontSize: '12px', color: '#718096', textTransform: 'uppercase', fontWeight: 600, marginTop: '4px' }}>Total Visits</div>
                 </div>
               </div>

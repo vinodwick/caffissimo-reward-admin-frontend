@@ -51,7 +51,7 @@ function App() {
                 ></div>
               )}
 
-              <main className="main-side p-4 sm:ml-64">
+              <main className="main-side p-4 sm:ml-64 min-h-screen flex flex-col">
                 <div className="iq-navbar-header banner-bg"></div>
                 <Header />
                 <div className="iq-page-content">
@@ -73,10 +73,9 @@ function App() {
                   </Routes>
                 </div>
                 
-                {/* Copyright and Credits Footer (Right-side bottom) */}
-                <footer style={{ position: 'fixed', bottom: '20px', right: '20px', padding: '10px 15px', background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(5px)', border: '1px solid #e2e8f0', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', color: '#718096', fontSize: '12px', textAlign: 'right', zIndex: 100 }}>
-                  <p style={{ marginBottom: '4px' }}>&copy; {new Date().getFullYear()} Caffissimo Australia. All rights reserved.</p>
-                  <p>Developed By <a href="https://aakiv.com" target="_blank" rel="noreferrer" style={{color: '#2b6cb0', fontWeight: 'bold', textDecoration: 'none'}}>AAKIV PVT LTD</a>, Sri Lanka</p>
+                {/* Copyright and Credits Footer (Desktop Only) */}
+                <footer className="fixed left-0 right-0 sm:left-64 bottom-0 bg-white/95 backdrop-blur-sm border-t border-gray-200 py-3 text-center text-xs text-gray-500 z-30 hidden sm:block">
+                  <p>&copy; {new Date().getFullYear()} Caffissimo Australia. All rights reserved. | Developed By <a href="https://aakiv.com" target="_blank" rel="noreferrer" className="text-blue-600 font-medium hover:underline">AAKIV PVT LTD</a></p>
                 </footer>
                 <BottomNav onMenuClick={toggleSidebar} />
               </main>
