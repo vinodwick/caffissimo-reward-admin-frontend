@@ -74,7 +74,9 @@ function Customers() {
                       <div className="customer-cell">
                         <div className="customer-avatar">{c.first_name[0]}</div>
                         <div>
-                          <div className="customer-name">{c.first_name} {c.last_name || ''}</div>
+                          <Link to={`/customers/${c.id}`} className="customer-name text-[#6F4E37] hover:underline hover:text-[#5a3f2c] font-semibold transition-colors">
+                            {c.first_name} {c.last_name || ''}
+                          </Link>
                           <div className="customer-email">{c.email || '—'}</div>
                         </div>
                       </div>

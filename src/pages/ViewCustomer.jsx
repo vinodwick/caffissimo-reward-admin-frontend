@@ -107,17 +107,22 @@ function ViewCustomer() {
           </div>
 
           {/* Active Rewards */}
-          <div className="card" style={{ padding: '24px', background: '#f5f3ff', border: '1px solid #ede9fe' }}>
-            <h3 style={{ fontSize: '16px', color: '#5b21b6', marginBottom: '16px' }}>🎁 Available Gifts</h3>
-            {rewards.filter(r => r.status === 'activated').length === 0 ? (
-              <p style={{ color: '#8b5cf6', fontSize: '14px' }}>No gifts are currently activated for redemption.</p>
+          <div className="card" style={{ padding: '24px', background: '#FAF8F5', border: '1px solid #E7E5E4' }}>
+            <h3 style={{ fontSize: '16px', color: '#6F4E37', marginBottom: '16px' }}>🎁 Available Gifts</h3>
+            {rewards.filter(r => r.status === 'activated' || r.status === 'earned').length === 0 ? (
+              <p style={{ color: '#A8A29E', fontSize: '14px' }}>No gifts are currently earned or activated.</p>
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                {rewards.filter(r => r.status === 'activated').map(r => (
+                {rewards.filter(r => r.status === 'activated' || r.status === 'earned').map(r => (
                   <div key={r.id} style={{ background: 'white', padding: '12px', borderRadius: '8px', boxShadow: '0 1px 2px rgba(0,0,0,0.05)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div style={{ fontWeight: 'bold', color: '#4c1d95' }}>{r.reward_name}</div>
-                    <div style={{ fontSize: '12px', color: '#8b5cf6', background: '#ede9fe', padding: '4px 8px', borderRadius: '4px' }}>
-                      Exp: {new Date(r.expires_at).toLocaleDateString()}
+                    <div>
+                      <div style={{ fontWeight: 'bold', color: '#2C201A' }}>{r.reward_name}</div>
+                      <div style={{ fontSize: '11px', color: r.status === 'activated' ? '#10B981' : '#D97706', marginTop: '2px', fontWeight: 600 }}>
+                        {r.status === 'activated' ? 'Active' : 'Unactivated'}
+                      </div>
+                    </div>
+                    <div style={{ fontSize: '12px', color: '#6F4E37', background: '#F0E6DD', padding: '4px 8px', borderRadius: '4px' }}>
+                      Exp: {r.expires_at ? new Date(r.expires_at).toLocaleDateString() : 'N/A'}
                     </div>
                   </div>
                 ))}
