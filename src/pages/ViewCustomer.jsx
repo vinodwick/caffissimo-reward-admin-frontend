@@ -49,7 +49,7 @@ function ViewCustomer() {
             {customer.first_name} {customer.last_name || ''}
             <span className={`status-chip ${customer.status === 'active' ? 'active' : 'inactive'}`} style={{ fontSize: '12px' }}>{customer.status}</span>
           </h1>
-          <p className="page-subtitle">Detailed Profile & Loyalty History</p>
+          <p className="page-subtitle">Full Profile & History</p>
         </div>
         <div className="flex flex-col items-end gap-1">
           <div style={{ fontSize: '12px', color: '#718096', textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.5px' }}>Current Tier</div>

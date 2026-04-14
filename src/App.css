@@ -128,6 +128,14 @@ h6 {
   border-top: 1px solid var(--border-light);
 }
 
+.global-event-card {
+  padding: 0.5rem;
+}
+
+.cp-foot {
+  padding: 1rem;
+}
+
 /* ─── Main Wrapper & Header ─── */
 .grid-3 {
   display: grid;

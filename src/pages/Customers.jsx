@@ -29,7 +29,7 @@ function Customers() {
       <div className="page-header flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
         <div>
           <h1 className="page-title">Customers</h1>
-          <p className="page-subtitle text-gray-500">Search and manage customer loyalty profiles</p>
+          <p className="page-subtitle text-gray-500">Find and edit member profiles</p>
         </div>
         <Link to="/customers/add" className="btn btn-primary whitespace-nowrap">+ Add Customer</Link>
       </div>

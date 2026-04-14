@@ -51,7 +51,7 @@ function Users() {
       <div className="page-header">
         <div>
           <h1 className="page-title">System Users</h1>
-          <p className="page-subtitle">Manage admin and staff users</p>
+          <p className="page-subtitle">Add or edit staff accounts</p>
         </div>
         <button 
           className="btn btn-primary" 

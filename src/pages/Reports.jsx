@@ -27,7 +27,7 @@ function Reports() {
       <div className="page-header flex flex-col md:flex-row justify-between md:items-center gap-4 mb-3">
         <div>
           <h1 className="page-title">Reports & Analytics</h1>
-          <p className="page-subtitle text-gray-500">Comprehensive insights across all locations</p>
+          <p className="page-subtitle text-gray-500">View stats for all stores</p>
         </div>
         <div className="range-selector flex flex-wrap gap-2">
           {['7d', '30d', '90d', '1y', 'all'].map(r => (
@@ -208,7 +208,7 @@ function Reports() {
                     <div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
                         <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#38a169' }}></div>
-                        <span style={{ fontSize: '14px', fontWeight: 600, color: '#4a5568' }}>Repeat Patrons</span>
+                        <span style={{ fontSize: '14px', fontWeight: 600, color: '#4a5568' }}>Repeat Loyalty members</span>
                       </div>
                       <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#2d3748', marginLeft: '20px' }}>{data.customerEngagement.repeat_visit_in_period}</div>
                     </div>

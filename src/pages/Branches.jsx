@@ -58,7 +58,7 @@ function Branches() {
       <div className="page-header flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
         <div>
           <h1 className="page-title">Branches</h1>
-          <p className="page-subtitle text-gray-500">Manage Caffissimo franchise locations</p>
+          <p className="page-subtitle text-gray-500">Add or edit store locations</p>
         </div>
         <button className="btn btn-primary whitespace-nowrap" onClick={() => setShowModal(true)}>+ Add Branch</button>
       </div>

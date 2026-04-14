@@ -84,7 +84,7 @@ function Settings() {
       <div className="page-header" style={{ marginBottom: '24px' }}>
         <div>
           <h1 className="page-title">Global Platform Settings</h1>
-          <p className="page-subtitle">Configure branding, program rules, tier thresholds, and monitor live APIs.</p>
+          <p className="page-subtitle">Update rules, points, and app settings.</p>
         </div>
       </div>
 

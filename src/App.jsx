@@ -42,11 +42,11 @@ function App() {
           <RequireAuth>
             <div className="iq-app-wrapper">
               <Sidebar isOpen={sidebarOpen} onClose={closeSidebar} />
-              
+
               {/* Mobile Sidebar Overlay */}
               {sidebarOpen && (
-                <div 
-                  className="sidebar-backdrop show-mobile" 
+                <div
+                  className="sidebar-backdrop show-mobile"
                   onClick={closeSidebar}
                 ></div>
               )}
@@ -72,9 +72,9 @@ function App() {
                     <Route path="/help" element={<Help />} />
                   </Routes>
                 </div>
-                
+
                 {/* Copyright and Credits Footer (Desktop Only) */}
-                <footer className="fixed left-0 right-0 sm:left-64 bottom-0 bg-white/95 backdrop-blur-sm border-t border-gray-200 py-3 text-center text-xs text-gray-500 z-30 hidden sm:block">
+                <footer className="cp-foot fixed left-0 right-0 sm:left-64 bottom-0 bg-white/95 backdrop-blur-sm border-t border-gray-200 py-3 text-center text-xs text-gray-500 z-30 hidden sm:block">
                   <p>&copy; {new Date().getFullYear()} Caffissimo Australia. All rights reserved. | Developed By <a href="https://aakiv.com" target="_blank" rel="noreferrer" className="text-blue-600 font-medium hover:underline">AAKIV PVT LTD</a></p>
                 </footer>
                 <BottomNav onMenuClick={toggleSidebar} />

@@ -85,7 +85,7 @@ function Dashboard() {
             <div className="big-static-card bg-white rounded-2xl p-6 flex flex-row items-center justify-between shadow-sm border border-gray-100">
                <div>
                   <div className="text-[#2C201A] text-4xl font-bold tracking-tight mb-2">{activeCustomers}</div>
-                  <div className="text-gray-500 text-lg font-medium">Active Patrons</div>
+                  <div className="text-gray-500 text-lg font-medium">Active Loyalty members</div>
                </div>
                <div className="w-16 h-16 min-w-[64px] rounded-full bg-[#fdf8f4] flex items-center justify-center text-[#D97706]">
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
@@ -198,24 +198,29 @@ function Dashboard() {
 
             <div className="col-lg-6 mb-4">
                {/* Recent Activity Timeline */}
-               <div className="card h-100">
+               <div className="card h-100 overflow-y-auto" >
                   <div className="card-header">
                      <h4 className="card-title flex items-center gap-2">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z" /><path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z" /></svg>
                         Global Event Stream
                      </h4>
                   </div>
-                  <div className="card-body p-4 overflow-y-auto" style={{ maxHeight: '400px' }}>
-                     <div className="iq-timeline">
+                  <div className="card-body p-4 " style={{ maxHeight: '400px' }}>
+                     <div className="flex flex-col gap-3">
                         {data.recentActivity && data.recentActivity.length > 0 ? (
                            data.recentActivity.map((a, i) => (
-                              <div className="timeline-item mb-4 pb-2 border-l-2 border-blue-200 pl-4 relative ml-2" key={i}>
-                                 <div className="absolute w-3 h-3 bg-blue-500 rounded-full -left-[7px] top-1"></div>
-                                 <div className="timeline-content">
-                                    <h6 className="mb-1 text-sm font-bold text-gray-800">{a.action}</h6>
-                                    <p className="mb-1 text-xs text-gray-500">{a.customer} @ <span className="font-semibold text-blue-600">{a.branch}</span></p>
-                                    <small className="text-gray-400 font-medium text-xs">{a.time}</small>
+                              <div className="global-event-card  flex items-center justify-between p-3 sm:p-4 bg-white rounded-lg shadow-sm border border-gray-100 transition-all hover:shadow-md" key={i}>
+                                 <div className="flex items-center gap-3 sm:gap-4">
+                                    <div className="w-10 h-10 rounded-full bg-[#FAF8F5] flex-shrink-0 flex items-center justify-center text-[#D4A373] border border-[#E7E5E4]">
+                                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                                    </div>
+                                    <div>
+                                       <h6 className="mb-1 text-sm font-bold text-[#2C201A]">{a.action}</h6>
+                                       <p className="mb-0 text-xs text-gray-500 line-clamp-1">{a.customer} <span className="font-medium">@</span> <span className="font-semibold text-[#D97706]">{a.branch}</span></p>
+                                       <p> <span className="text-[11px] font-semibold text-[#8C6239] bg-[#FAF8F5] px-2 py-1.5 rounded-md border border-[#E7E5E4]">{a.time}</span></p>
+                                    </div>
                                  </div>
+
                               </div>
                            ))
                         ) : (

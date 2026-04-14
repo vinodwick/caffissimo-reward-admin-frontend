@@ -16,12 +16,12 @@ function Promotions() {
 
   return (
     <div className="page">
-      <div className="page-header">
+      <div className="page-header flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
         <div>
           <h1 className="page-title">Promotions</h1>
-          <p className="page-subtitle">Manage campaigns, bonus points, and special offers</p>
+          <p className="page-subtitle">Set up bonus points and offers</p>
         </div>
-        <button className="btn btn-primary">+ New Promotion</button>
+        <button className="btn btn-primary whitespace-nowrap">+ New Promotion</button>
       </div>
 
       <div className="filter-tabs">
@@ -29,45 +29,47 @@ function Promotions() {
         <button className={`filter-tab ${tab === 'past' ? 'active' : ''}`} onClick={() => setTab('past')}>Past</button>
       </div>
 
-      <div className="card">
+      <div className="card w-full overflow-hidden">
         {loading ? <p style={{ padding: '20px' }}>Loading promotions...</p> : (
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Type</th>
-                <th>Branch Scope</th>
-                <th>Tier Scope</th>
-                <th>Start</th>
-                <th>End</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.map((p) => (
-                <tr key={p.id}>
-                  <td><strong>{p.title}</strong></td>
-                  <td>{p.type}</td>
-                  <td>{p.branch_scope || 'All'}</td>
-                  <td>{p.tier_scope || 'All'}</td>
-                  <td>{new Date(p.start_at).toISOString().split('T')[0]}</td>
-                  <td>{new Date(p.end_at).toISOString().split('T')[0]}</td>
-                  <td>
-                    <span className={`status-chip ${p.active ? 'active' : 'inactive'}`}>
-                      {p.active ? 'Active' : 'Ended'}
-                    </span>
-                  </td>
-                  <td>
-                    <button className="btn btn-sm btn-secondary">Edit</button>
-                  </td>
+          <div className="overflow-x-auto w-full">
+            <table className="data-table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Type</th>
+                  <th>Branch Scope</th>
+                  <th>Tier Scope</th>
+                  <th>Start</th>
+                  <th>End</th>
+                  <th>Status</th>
+                  <th>Actions</th>
                 </tr>
-              ))}
-              {data.length === 0 && (
-                <tr><td colSpan="8" style={{ textAlign: 'center' }}>No promotions found</td></tr>
-              )}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {data.map((p) => (
+                  <tr key={p.id}>
+                    <td><strong>{p.title}</strong></td>
+                    <td>{p.type}</td>
+                    <td>{p.branch_scope || 'All'}</td>
+                    <td>{p.tier_scope || 'All'}</td>
+                    <td>{new Date(p.start_at).toISOString().split('T')[0]}</td>
+                    <td>{new Date(p.end_at).toISOString().split('T')[0]}</td>
+                    <td>
+                      <span className={`status-chip ${p.active ? 'active' : 'inactive'}`}>
+                        {p.active ? 'Active' : 'Ended'}
+                      </span>
+                    </td>
+                    <td>
+                      <button className="btn btn-sm btn-secondary">Edit</button>
+                    </td>
+                  </tr>
+                ))}
+                {data.length === 0 && (
+                  <tr><td colSpan="8" style={{ textAlign: 'center' }}>No promotions found</td></tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
     </div>
