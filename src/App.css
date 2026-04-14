@@ -2,15 +2,23 @@
 @import "tailwindcss";
 
 :root {
-  --primary: #2D60FF;
-  --secondary: #FE5C73;
-  --success: #16DBCC;
-  --warning: #FFBB38;
-  --dark: #343C6A;
-  --muted: #B1B5C3;
-  --bg-color: #F5F7FA;
+  --primary: #6F4E37;
+  /* Roasted Coffee Brown */
+  --secondary: #D4A373;
+  /* Warm Latte/Caramel */
+  --success: #10B981;
+  /* Standard Green */
+  --warning: #F59E0B;
+  /* Amber */
+  --dark: #2C201A;
+  /* Deep espresso for text */
+  --muted: #A8A29E;
+  /* Warm stone gray */
+  --bg-color: #FAF8F5;
+  /* Creamy off-white backrgound */
   --white: #FFFFFF;
-  --border-light: #E6EFF5;
+  --border-light: #E7E5E4;
+  /* Warm light border */
   --font-base: 'Inter', sans-serif;
 }
 
@@ -40,6 +48,10 @@ h6 {
   display: flex;
   height: 100vh;
   overflow: hidden;
+}
+
+.page-header {
+  margin-bottom: 1rem;
 }
 
 /* ─── Sidebar ─── */
@@ -116,6 +128,14 @@ h6 {
   border-top: 1px solid var(--border-light);
 }
 
+.global-event-card {
+  padding: 0.5rem;
+}
+
+.cp-foot {
+  padding: 1rem;
+}
+
 /* ─── Main Wrapper & Header ─── */
 .grid-3 {
   display: grid;
@@ -134,12 +154,16 @@ h6 {
   padding: 1rem;
 }
 
+.big-static-card {
+  padding: 1rem;
+}
+
 @media (min-width: 640px) {
   .main-side {
     margin-left: 250px;
     width: calc(100% - 250px);
-    padding-bottom: 0;
-    /* No bottom nav on desktop */
+    padding-bottom: 50px;
+    /* Padding for fixed footer on desktop */
   }
 }
 
@@ -278,7 +302,8 @@ h6 {
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(2px);
-  z-index: 35; /* Just below the sidebar (z-40) */
+  z-index: 35;
+  /* Just below the sidebar (z-40) */
   animation: fadeIn 0.3s ease-in-out;
 }
 
@@ -303,8 +328,13 @@ h6 {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 

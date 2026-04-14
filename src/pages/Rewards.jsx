@@ -37,18 +37,18 @@ function Rewards() {
 
   return (
     <div className="page">
-      <div className="page-header">
+      <div className="page-header flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
         <div>
-          <h1 className="page-title">Rewards</h1>
-          <p className="page-subtitle">Manage free item reward lifecycle across all branches</p>
+          <h1 className="page-title">Reward Ledger</h1>
+          <p className="page-subtitle text-gray-500">Track all member free items</p>
         </div>
       </div>
 
-      <div className="filter-tabs">
+      <div className="filter-tabs flex flex-row overflow-x-auto gap-2 pb-2 mb-4 scrollbar-hide w-full whitespace-nowrap">
         {['all', 'earned', 'activated', 'redeemed', 'expired', 'cancelled'].map(s => (
           <button
             key={s}
-            className={`filter-tab ${filter === s ? 'active' : ''}`}
+            className={`px-4 py-2 text-sm font-medium rounded-full transition-colors border ${filter === s ? 'bg-[#6F4E37] text-white border-[#6F4E37]' : 'bg-white text-[#6F4E37] border-[#E7E5E4] hover:bg-[#FAF8F5]'}`}
             onClick={() => setFilter(s)}
           >
             {s.charAt(0).toUpperCase() + s.slice(1)}
@@ -56,48 +56,50 @@ function Rewards() {
         ))}
       </div>
 
-      <div className="card">
+      <div className="card w-full overflow-hidden">
         {loading ? <p style={{ padding: '20px' }}>Loading rewards...</p> : (
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th>Customer</th>
-                <th>Status</th>
-                <th>Earned</th>
-                <th>Expires</th>
-                <th>Earned Branch</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.map((r) => {
-                const customer = r.customer || {};
-                return (
-                  <tr key={r.id}>
-                    <td>
-                      <div className="customer-name">{customer.first_name} {customer.last_name || ''}</div>
-                      <div className="customer-email">{customer.phone_number}</div>
-                    </td>
-                    <td>
-                      <span className="status-pill" style={{ background: statusColor[r.status] + '22', color: statusColor[r.status] }}>
-                        {r.status.charAt(0).toUpperCase() + r.status.slice(1)}
-                      </span>
-                    </td>
-                    <td>{new Date(r.earned_at).toISOString().split('T')[0]}</td>
-                    <td>{r.expires_at ? new Date(r.expires_at).toISOString().split('T')[0] : '—'}</td>
-                    <td>{r.earned_branch?.name || '—'}</td>
-                    <td className="action-btns">
-                      {r.status === 'activated' && <button className="btn btn-sm btn-primary" onClick={() => handleRedeem(r.id)}>Redeem</button>}
-                      {r.status === 'earned' && <button className="btn btn-sm btn-secondary" onClick={() => handleVoid(r.id)}>Void</button>}
-                    </td>
-                  </tr>
-                );
-              })}
-              {data.length === 0 && (
-                <tr><td colSpan="6" style={{ textAlign: 'center' }}>No rewards found in this state</td></tr>
-              )}
-            </tbody>
-          </table>
+          <div className="overflow-x-auto w-full">
+            <table className="data-table min-w-[700px]">
+              <thead>
+                <tr>
+                  <th>Loyalty member</th>
+                  <th>Status</th>
+                  <th>Earned</th>
+                  <th>Expires</th>
+                  <th>Earned Branch</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((r) => {
+                  const customer = r.customer || {};
+                  return (
+                    <tr key={r.id}>
+                      <td>
+                        <div className="customer-name" style={{ fontWeight: '600', color: '#2d3748' }}>{customer.first_name} {customer.last_name || ''}</div>
+                        <div className="customer-email" style={{ fontSize: '13px', color: '#718096' }}>{customer.phone_number}</div>
+                      </td>
+                      <td>
+                        <span className="status-pill inline-block px-3 py-1 rounded-full text-xs font-semibold" style={{ background: statusColor[r.status] + '22', color: statusColor[r.status] }}>
+                          {r.status.charAt(0).toUpperCase() + r.status.slice(1)}
+                        </span>
+                      </td>
+                      <td className="text-sm text-gray-600">{new Date(r.earned_at).toISOString().split('T')[0]}</td>
+                      <td className="text-sm text-gray-600">{r.expires_at ? new Date(r.expires_at).toISOString().split('T')[0] : '—'}</td>
+                      <td className="text-sm text-gray-600">{r.earned_branch?.name || '—'}</td>
+                      <td className="action-btns flex gap-2">
+                        {r.status === 'activated' && <button className="btn btn-sm btn-primary whitespace-nowrap" onClick={() => handleRedeem(r.id)}>Redeem</button>}
+                        {r.status === 'earned' && <button className="btn btn-sm btn-secondary whitespace-nowrap" onClick={() => handleVoid(r.id)}>Void</button>}
+                      </td>
+                    </tr>
+                  );
+                })}
+                {data.length === 0 && (
+                  <tr><td colSpan="6" style={{ textAlign: 'center', padding: '30px' }} className="text-gray-500">No rewards found in this state</td></tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
     </div>

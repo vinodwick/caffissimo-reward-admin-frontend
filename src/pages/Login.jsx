@@ -137,7 +137,7 @@ function Login() {
                   backgroundColor: '#F7FAFC'
                 }}
                 onFocus={(e) => {
-                  e.target.style.borderColor = 'var(--primary, #3182ce)';
+                  e.target.style.borderColor = 'var(--primary, #8C6239)';
                   e.target.style.backgroundColor = '#fff';
                   e.target.style.boxShadow = '0 0 0 3px rgba(49, 130, 206, 0.1)';
                 }}
@@ -171,7 +171,7 @@ function Login() {
                   backgroundColor: '#F7FAFC'
                 }}
                 onFocus={(e) => {
-                  e.target.style.borderColor = 'var(--primary, #3182ce)';
+                  e.target.style.borderColor = 'var(--primary, #8C6239)';
                   e.target.style.backgroundColor = '#fff';
                   e.target.style.boxShadow = '0 0 0 3px rgba(49, 130, 206, 0.1)';
                 }}

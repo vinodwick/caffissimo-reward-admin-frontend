@@ -63,7 +63,7 @@ function VisitRewards() {
       <div className="page-header">
         <div>
           <h1 className="page-title">Periodic Visit Rewards</h1>
-          <p className="page-subtitle">Configure the free item given after the 7th visit</p>
+          <p className="page-subtitle">Set up the free item after 7 visits</p>
         </div>
         <button 
           className="btn btn-primary" 

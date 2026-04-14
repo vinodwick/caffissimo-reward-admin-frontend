@@ -55,23 +55,23 @@ function Branches() {
 
   return (
     <div className="page">
-      <div className="page-header">
+      <div className="page-header flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
         <div>
           <h1 className="page-title">Branches</h1>
-          <p className="page-subtitle">Manage Caffissimo franchise locations</p>
+          <p className="page-subtitle text-gray-500">Add or edit store locations</p>
         </div>
-        <button className="btn btn-primary" onClick={() => setShowModal(true)}>+ Add Branch</button>
+        <button className="btn btn-primary whitespace-nowrap" onClick={() => setShowModal(true)}>+ Add Branch</button>
       </div>
 
       {loading ? <p>Loading branches...</p> : (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '24px' }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {data.map((b) => (
             <div className="card" key={b.id} style={{ display: 'flex', flexDirection: 'column', padding: '24px', margin: 0, justifyContent: 'space-between' }}>
               
               {/* Header */}
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-                  <div style={{ width: '48px', height: '48px', background: '#ebf8ff', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px' }}>
+                  <div style={{ width: '48px', height: '48px', background: '#F0E6DD', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px' }}>
                     🏪
                   </div>
                   <div>
@@ -97,11 +97,11 @@ function Branches() {
               {/* Stats Box */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', background: '#f8fafc', padding: '16px', borderRadius: '12px', marginBottom: '24px' }}>
                 <div style={{ textAlign: 'center' }}>
-                  <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#2b6cb0' }}>{b.customers_count || 0}</div>
+                  <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#6F4E37' }}>{b.customers_count || 0}</div>
                   <div style={{ fontSize: '12px', color: '#718096', textTransform: 'uppercase', fontWeight: 600, marginTop: '4px' }}>Customers</div>
                 </div>
                 <div style={{ textAlign: 'center' }}>
-                  <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#2b6cb0' }}>{(b.visits_count || 0).toLocaleString()}</div>
+                  <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#6F4E37' }}>{(b.visits_count || 0).toLocaleString()}</div>
                   <div style={{ fontSize: '12px', color: '#718096', textTransform: 'uppercase', fontWeight: 600, marginTop: '4px' }}>Total Visits</div>
                 </div>
               </div>
@@ -128,7 +128,7 @@ function Branches() {
             {error && <div className="alert alert-error" style={{ marginBottom: '20px' }}>{error}</div>}
             
             <form onSubmit={handleSubmit} className="form-stack">
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="form-group">
                   <label>Branch Name *</label>
                   <input type="text" name="name" value={formData.name} onChange={handleInputChange} required placeholder="e.g. Caffissimo CBD" />
@@ -144,7 +144,7 @@ function Branches() {
                 <input type="text" name="address" value={formData.address} onChange={handleInputChange} placeholder="e.g. 123 Main St" />
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="form-group">
                   <label>Suburb</label>
                   <input type="text" name="suburb" value={formData.suburb} onChange={handleInputChange} placeholder="e.g. Melbourne" />
@@ -160,9 +160,9 @@ function Branches() {
                 <input type="text" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="e.g. 03 9876 5432" />
               </div>
 
-              <div style={{ display: 'flex', gap: '12px', marginTop: '20px' }}>
-                <button type="button" className="btn btn-secondary" style={{ flex: 1 }} onClick={() => setShowModal(false)}>Cancel</button>
-                <button type="submit" className="btn btn-primary" style={{ flex: 1 }} disabled={saving}>
+              <div className="flex flex-col sm:flex-row gap-3 mt-5">
+                <button type="button" className="btn btn-secondary w-full" onClick={() => setShowModal(false)}>Cancel</button>
+                <button type="submit" className="btn btn-primary w-full" disabled={saving}>
                   {saving ? 'Saving...' : 'Add Branch'}
                 </button>
               </div>

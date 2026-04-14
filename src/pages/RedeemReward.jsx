@@ -104,7 +104,7 @@ function RedeemReward() {
       <div className="page-header" style={{ marginBottom: '24px' }}>
         <div>
           <h1 className="page-title text-red-600">Redeem Free Item Reward</h1>
-          <p className="page-subtitle">Lookup a customer and process their 7th visit free item claim.</p>
+          <p className="page-subtitle">Find a member and give their free item.</p>
         </div>
       </div>
 
@@ -112,7 +112,7 @@ function RedeemReward() {
         
         {/* CUSTOMER SEARCH */}
         <div className="card" style={{ padding: '24px', position: 'relative', zIndex: 10 }}>
-          <h2 style={{ fontSize: '16px', color: '#2d3748', marginBottom: '16px', margin: '0 0 16px 0' }}>Step 1: Search Patron</h2>
+          <h2 style={{ fontSize: '16px', color: '#2d3748', marginBottom: '16px', margin: '0 0 16px 0' }}>Step 1: Search Loyalty member</h2>
           
           <div className="form-group" style={{ position: 'relative' }}>
             <label style={{ fontSize: '13px', fontWeight: 600 }}>Phone Number</label>
