@@ -48,7 +48,7 @@ function Rewards() {
         {['all', 'earned', 'activated', 'redeemed', 'expired', 'cancelled'].map(s => (
           <button
             key={s}
-            className={`filter-tab whitespace-nowrap ${filter === s ? 'active' : ''}`}
+            className={`px-4 py-2 text-sm font-medium rounded-full transition-colors border ${filter === s ? 'bg-[#6F4E37] text-white border-[#6F4E37]' : 'bg-white text-[#6F4E37] border-[#E7E5E4] hover:bg-[#FAF8F5]'}`}
             onClick={() => setFilter(s)}
           >
             {s.charAt(0).toUpperCase() + s.slice(1)}
@@ -76,8 +76,8 @@ function Rewards() {
                   return (
                     <tr key={r.id}>
                       <td>
-                        <div className="customer-name font-semibold text-gray-800">{customer.first_name} {customer.last_name || ''}</div>
-                        <div className="customer-email text-sm text-gray-500">{customer.phone_number}</div>
+                        <div className="customer-name" style={{ fontWeight: '600', color: '#2d3748' }}>{customer.first_name} {customer.last_name || ''}</div>
+                        <div className="customer-email" style={{ fontSize: '13px', color: '#718096' }}>{customer.phone_number}</div>
                       </td>
                       <td>
                         <span className="status-pill inline-block px-3 py-1 rounded-full text-xs font-semibold" style={{ background: statusColor[r.status] + '22', color: statusColor[r.status] }}>
