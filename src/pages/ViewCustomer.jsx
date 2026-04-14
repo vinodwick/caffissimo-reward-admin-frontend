@@ -51,7 +51,7 @@ function ViewCustomer() {
           </h1>
           <p className="page-subtitle">Detailed Profile & Loyalty History</p>
         </div>
-        <div style={{ textAlign: 'right' }}>
+        <div className="flex flex-col items-end gap-1">
           <div style={{ fontSize: '12px', color: '#718096', textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.5px' }}>Current Tier</div>
           <span className="tier-chip" data-tier={customer.tier?.name?.toLowerCase() || 'bronze'} style={{ fontSize: '18px', padding: '6px 16px', marginTop: '4px' }}>
             {customer.tier?.name || 'Bronze'}
@@ -59,10 +59,10 @@ function ViewCustomer() {
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(300px, 1fr) minmax(300px, 2fr)', gap: '24px', alignItems: 'start' }}>
+      <div className="flex flex-col lg:flex-row gap-6 items-start">
         
         {/* Left Column */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <div className="w-full lg:w-1/3 flex flex-col gap-6">
           
           {/* Identity Card */}
           <div className="card" style={{ padding: '24px' }}>
@@ -127,13 +127,13 @@ function ViewCustomer() {
         </div>
 
         {/* Right Column */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <div className="w-full lg:w-2/3 flex flex-col gap-6">
           
           {/* Progress & Stats Card */}
           <div className="card" style={{ padding: '24px' }}>
             <h3 style={{ fontSize: '16px', color: '#2d3748', marginBottom: '20px', paddingBottom: '10px', borderBottom: '1px solid #edf2f7' }}>Loyalty Progress</h3>
             
-            <div style={{ display: 'flex', gap: '24px', marginBottom: '24px' }}>
+            <div className="flex flex-col sm:flex-row gap-6 mb-6">
               <div style={{ flex: 1, background: '#f8fafc', padding: '16px', borderRadius: '12px', textAlign: 'center', border: '1px solid #e2e8f0' }}>
                 <div style={{ fontSize: '12px', color: '#718096', textTransform: 'uppercase', fontWeight: 600, marginBottom: '4px' }}>Total Points</div>
                 <div style={{ fontSize: '32px', fontWeight: 'bold', color: '#2b6cb0' }}>{customer.points_balance}</div>
@@ -174,33 +174,35 @@ function ViewCustomer() {
             <div style={{ padding: '16px 20px', borderBottom: '1px solid #edf2f7', background: '#f8fafc' }}>
               <h3 style={{ fontSize: '15px', color: '#2d3748', margin: 0 }}>Recent Visit History</h3>
             </div>
-            <table className="data-table" style={{ width: '100%', margin: 0 }}>
-              <thead>
-                <tr>
-                  <th style={{ padding: '12px 20px' }}>Date</th>
-                  <th style={{ padding: '12px 20px' }}>Branch</th>
-                  <th style={{ textAction: 'right', padding: '12px 20px' }}>Amount Spent</th>
-                  <th style={{ padding: '12px 20px' }}>Cycle Stamp</th>
-                </tr>
-              </thead>
-              <tbody>
-                {visits.slice(0, 5).map(v => (
-                  <tr key={v.id}>
-                    <td style={{ padding: '12px 20px', color: '#4a5568' }}>{new Date(v.visited_at).toLocaleDateString()}</td>
-                    <td style={{ padding: '12px 20px', color: '#4a5568' }}>{v.branch?.name || '—'}</td>
-                    <td style={{ padding: '12px 20px', color: '#4a5568', fontWeight: 500 }}>${v.purchase_amount}</td>
-                    <td style={{ padding: '12px 20px' }}>
-                      <span style={{ background: '#ebf8ff', color: '#2b6cb0', padding: '4px 8px', borderRadius: '12px', fontSize: '12px', fontWeight: 'bold' }}>
-                        {v.cycle_visit_number}/7
-                      </span>
-                    </td>
+            <div className="overflow-x-auto">
+              <table className="data-table min-w-[600px] w-full m-0">
+                <thead>
+                  <tr>
+                    <th style={{ padding: '12px 20px' }}>Date</th>
+                    <th style={{ padding: '12px 20px' }}>Branch</th>
+                    <th style={{ textAction: 'right', padding: '12px 20px' }}>Amount Spent</th>
+                    <th style={{ padding: '12px 20px' }}>Cycle Stamp</th>
                   </tr>
-                ))}
-                {visits.length === 0 && (
-                  <tr><td colSpan="4" style={{ textAlign: 'center', padding: '20px', color: '#a0aec0' }}>No visits recorded yet.</td></tr>
-                )}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {visits.slice(0, 5).map(v => (
+                    <tr key={v.id}>
+                      <td style={{ padding: '12px 20px', color: '#4a5568' }}>{new Date(v.visited_at).toLocaleDateString()}</td>
+                      <td style={{ padding: '12px 20px', color: '#4a5568' }}>{v.branch?.name || '—'}</td>
+                      <td style={{ padding: '12px 20px', color: '#4a5568', fontWeight: 500 }}>${v.purchase_amount}</td>
+                      <td style={{ padding: '12px 20px' }}>
+                        <span style={{ background: '#ebf8ff', color: '#2b6cb0', padding: '4px 8px', borderRadius: '12px', fontSize: '12px', fontWeight: 'bold' }}>
+                          {v.cycle_visit_number}/7
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                  {visits.length === 0 && (
+                    <tr><td colSpan="4" style={{ textAlign: 'center', padding: '20px', color: '#a0aec0' }}>No visits recorded yet.</td></tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
             {visits.length > 5 && (
               <div style={{ padding: '10px', textAlign: 'center', color: '#718096', fontSize: '12px', borderTop: '1px solid #edf2f7' }}>
                 Showing last 5 of {visits.length} visits
@@ -213,29 +215,31 @@ function ViewCustomer() {
             <div style={{ padding: '16px 20px', borderBottom: '1px solid #edf2f7', background: '#f8fafc' }}>
               <h3 style={{ fontSize: '15px', color: '#2d3748', margin: 0 }}>Reward Lifecycle</h3>
             </div>
-            <table className="data-table" style={{ width: '100%', margin: 0 }}>
-              <thead>
-                <tr>
-                  <th style={{ padding: '12px 20px' }}>Reward Parameter</th>
-                  <th style={{ padding: '12px 20px' }}>Status</th>
-                  <th style={{ padding: '12px 20px', textAlign: 'right' }}>Date Earned</th>
-                </tr>
-              </thead>
-              <tbody>
-                {rewards.map(r => (
-                  <tr key={r.id}>
-                    <td style={{ padding: '12px 20px', color: '#4a5568', fontWeight: 500 }}>{r.reward_name}</td>
-                    <td style={{ padding: '12px 20px' }}>
-                      <span className={`status-chip ${r.status === 'redeemed' ? 'active' : ''}`} style={{ fontSize: '11px' }}>{r.status}</span>
-                    </td>
-                    <td style={{ padding: '12px 20px', textAlign: 'right', color: '#718096' }}>{new Date(r.earned_at).toLocaleDateString()}</td>
+            <div className="overflow-x-auto">
+              <table className="data-table min-w-[500px] w-full m-0">
+                <thead>
+                  <tr>
+                    <th style={{ padding: '12px 20px' }}>Reward Parameter</th>
+                    <th style={{ padding: '12px 20px' }}>Status</th>
+                    <th style={{ padding: '12px 20px', textAlign: 'right' }}>Date Earned</th>
                   </tr>
-                ))}
-                {rewards.length === 0 && (
-                  <tr><td colSpan="3" style={{ textAlign: 'center', padding: '20px', color: '#a0aec0' }}>No reward cycles completed yet.</td></tr>
-                )}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {rewards.map(r => (
+                    <tr key={r.id}>
+                      <td style={{ padding: '12px 20px', color: '#4a5568', fontWeight: 500 }}>{r.reward_name}</td>
+                      <td style={{ padding: '12px 20px' }}>
+                        <span className={`status-chip ${r.status === 'redeemed' ? 'active' : ''}`} style={{ fontSize: '11px' }}>{r.status}</span>
+                      </td>
+                      <td style={{ padding: '12px 20px', textAlign: 'right', color: '#718096' }}>{new Date(r.earned_at).toLocaleDateString()}</td>
+                    </tr>
+                  ))}
+                  {rewards.length === 0 && (
+                    <tr><td colSpan="3" style={{ textAlign: 'center', padding: '20px', color: '#a0aec0' }}>No reward cycles completed yet.</td></tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

@@ -55,16 +55,16 @@ function Branches() {
 
   return (
     <div className="page">
-      <div className="page-header">
+      <div className="page-header flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
         <div>
           <h1 className="page-title">Branches</h1>
-          <p className="page-subtitle">Manage Caffissimo franchise locations</p>
+          <p className="page-subtitle text-gray-500">Manage Caffissimo franchise locations</p>
         </div>
-        <button className="btn btn-primary" onClick={() => setShowModal(true)}>+ Add Branch</button>
+        <button className="btn btn-primary whitespace-nowrap" onClick={() => setShowModal(true)}>+ Add Branch</button>
       </div>
 
       {loading ? <p>Loading branches...</p> : (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '24px' }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {data.map((b) => (
             <div className="card" key={b.id} style={{ display: 'flex', flexDirection: 'column', padding: '24px', margin: 0, justifyContent: 'space-between' }}>
               
@@ -128,7 +128,7 @@ function Branches() {
             {error && <div className="alert alert-error" style={{ marginBottom: '20px' }}>{error}</div>}
             
             <form onSubmit={handleSubmit} className="form-stack">
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="form-group">
                   <label>Branch Name *</label>
                   <input type="text" name="name" value={formData.name} onChange={handleInputChange} required placeholder="e.g. Caffissimo CBD" />
@@ -144,7 +144,7 @@ function Branches() {
                 <input type="text" name="address" value={formData.address} onChange={handleInputChange} placeholder="e.g. 123 Main St" />
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="form-group">
                   <label>Suburb</label>
                   <input type="text" name="suburb" value={formData.suburb} onChange={handleInputChange} placeholder="e.g. Melbourne" />
@@ -160,9 +160,9 @@ function Branches() {
                 <input type="text" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="e.g. 03 9876 5432" />
               </div>
 
-              <div style={{ display: 'flex', gap: '12px', marginTop: '20px' }}>
-                <button type="button" className="btn btn-secondary" style={{ flex: 1 }} onClick={() => setShowModal(false)}>Cancel</button>
-                <button type="submit" className="btn btn-primary" style={{ flex: 1 }} disabled={saving}>
+              <div className="flex flex-col sm:flex-row gap-3 mt-5">
+                <button type="button" className="btn btn-secondary w-full" onClick={() => setShowModal(false)}>Cancel</button>
+                <button type="submit" className="btn btn-primary w-full" disabled={saving}>
                   {saving ? 'Saving...' : 'Add Branch'}
                 </button>
               </div>
