@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { QRCodeCanvas } from 'qrcode.react';
 import api from '../services/api';
 
 function ViewCustomer() {
@@ -102,6 +103,113 @@ function ViewCustomer() {
                   <div style={{ fontSize: '12px', color: '#a0aec0', fontWeight: 600 }}>Registered Branch</div>
                   <div>{customer.branch?.name || 'Any'}</div>
                 </div>
+              </div>
+            </div>
+
+            {/* Reward QR Code Section */}
+            <div style={{ marginTop: '24px', paddingTop: '20px', borderTop: '1px solid #edf2f7', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
+              <div style={{ padding: '16px', background: '#fff', borderRadius: '12px', boxShadow: '0 2px 8px rgba(0,0,0,0.05)', border: '1px solid #e2e8f0' }}>
+                <QRCodeCanvas 
+                  id="customer-reward-qr"
+                  value={customer.phone_number} 
+                  size={140}
+                  bgColor={"#ffffff"}
+                  fgColor={"#2C201A"}
+                  level={"M"}
+                />
+              </div>
+              <div style={{ fontSize: '13px', fontWeight: '600', color: '#6F4E37' }}>
+                Reward QR Code
+              </div>
+              <div style={{ display: 'flex', gap: '8px', marginTop: '4px' }}>
+                <button 
+                  onClick={() => {
+                    const canvas = document.getElementById('customer-reward-qr');
+                    if (!canvas) return;
+                    const pngUrl = canvas.toDataURL("image/png");
+                    const downloadLink = document.createElement("a");
+                    downloadLink.href = pngUrl;
+                    downloadLink.download = `${customer.first_name}_Reward_QR.png`;
+                    document.body.appendChild(downloadLink);
+                    downloadLink.click();
+                    document.body.removeChild(downloadLink);
+                  }}
+                  className="btn-qr-download"
+                  style={{ 
+                    background: '#FAF8F5', 
+                    border: '1px solid #D97706', 
+                    color: '#D97706', 
+                    padding: '6px 16px', 
+                    borderRadius: '20px', 
+                    fontSize: '12px', 
+                    fontWeight: 600, 
+                    cursor: 'pointer', 
+                    transition: 'all 0.2s',
+                  }}
+                  onMouseOver={(e) => { e.target.style.background = '#D97706'; e.target.style.color = '#FFF'; }}
+                  onMouseOut={(e) => { e.target.style.background = '#FAF8F5'; e.target.style.color = '#D97706'; }}
+                >
+                  Download
+                </button>
+                <button 
+                  onClick={() => {
+                    const canvas = document.getElementById('customer-reward-qr');
+                    if (!canvas) return;
+                    const pngUrl = canvas.toDataURL("image/png");
+                    
+                    const printWindow = window.open('', '_blank', 'width=400,height=600');
+                    if (!printWindow) {
+                      alert("Please allow popups to use the print feature.");
+                      return;
+                    }
+                    printWindow.document.write(`
+                      <html>
+                        <head>
+                          <title>Print Reward QR - ${customer.first_name}</title>
+                          <style>
+                            body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: center; margin: 0; padding: 20px; color: #000; }
+                            h2 { margin: 0 0 5px 0; font-size: 20px; }
+                            p { margin: 0 0 20px 0; font-size: 14px; }
+                            img { max-width: 100%; height: auto; width: 200px; display: block; margin: 0 auto; }
+                            @media print {
+                              @page { margin: 0; size: auto; }
+                              body { margin: 0; padding: 10px; }
+                            }
+                          </style>
+                        </head>
+                        <body>
+                          <h2>Caffissimo</h2>
+                          <p>${customer.first_name} ${customer.last_name || ''}</p>
+                          <img src="${pngUrl}" />
+                          <p style="margin-top: 15px; font-size: 12px; font-weight: bold;">Member QR Code</p>
+                        </body>
+                      </html>
+                    `);
+                    printWindow.document.close();
+                    printWindow.focus();
+                    
+                    setTimeout(() => {
+                      printWindow.print();
+                      printWindow.close();
+                    }, 300);
+                  }}
+                  className="btn-qr-print"
+                  style={{ 
+                    background: '#6F4E37', 
+                    border: '1px solid #6F4E37', 
+                    color: '#FFFFFF', 
+                    padding: '6px 16px', 
+                    borderRadius: '20px', 
+                    fontSize: '12px', 
+                    fontWeight: 600, 
+                    cursor: 'pointer', 
+                    transition: 'all 0.2s',
+                  }}
+                  onMouseOver={(e) => { e.target.style.background = '#5a3f2c'; e.target.style.borderColor = '#5a3f2c'; }}
+                  onMouseOut={(e) => { e.target.style.background = '#6F4E37'; e.target.style.borderColor = '#6F4E37'; }}
+                >
+                  Print QR
+                </button>
               </div>
             </div>
           </div>
