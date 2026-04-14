@@ -32,22 +32,22 @@ function Login() {
   };
 
   return (
-    <div style={{ 
-      display: 'flex', 
+    <div style={{
+      display: 'flex',
       flexDirection: isMobile ? 'column' : 'row',
-      height: '100vh', 
-      backgroundColor: '#fcfcfc', 
+      height: '100vh',
+      backgroundColor: '#fcfcfc',
       fontFamily: "'Inter', sans-serif",
       position: 'relative',
       overflow: 'hidden'
     }}>
       {/* Left side: Background Image */}
-      <div style={{ 
-        flex: isMobile ? 'none' : 1.2, 
+      <div style={{
+        flex: isMobile ? 'none' : 1.2,
         position: isMobile ? 'absolute' : 'relative',
         top: 0, left: 0, right: 0, bottom: 0,
-        backgroundImage: "url('/login-bg.jpg')", 
-        backgroundSize: 'cover', 
+        backgroundImage: "url('/login-bg.jpg')",
+        backgroundSize: 'cover',
         backgroundPosition: 'center',
         display: 'flex',
         flexDirection: 'column',
@@ -59,14 +59,14 @@ function Login() {
         <div style={{
           position: 'absolute',
           top: 0, left: 0, right: 0, bottom: 0,
-          background: isMobile 
-            ? 'linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%)' 
+          background: isMobile
+            ? 'linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%)'
             : 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%)',
         }}></div>
-        
+
         {!isMobile && (
           <div style={{ position: 'relative', color: 'white', zIndex: 1, maxWidth: '500px' }}>
-            <h2 style={{ fontSize: '42px', fontWeight: '700', marginBottom: '16px', letterSpacing: '-0.5px' }}>
+            <h2 style={{ fontSize: '42px', color: '#cfaf32', fontWeight: '700', marginBottom: '16px', letterSpacing: '-0.5px' }}>
               Elevate Your Experience
             </h2>
             <p style={{ fontSize: '18px', opacity: 0.9, lineHeight: 1.6, fontWeight: '300' }}>
@@ -77,19 +77,18 @@ function Login() {
       </div>
 
       {/* Right side: Login Form */}
-      <div style={{ 
-        flex: 1, 
-        display: 'flex', 
-        justifyContent: 'center', 
+      <div style={{
+        flex: 1,
+        display: 'flex',
+        justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: isMobile ? 'transparent' : '#fff',
-        boxShadow: isMobile ? 'none' : '-20px 0 40px rgba(0,0,0,0.08)',
         zIndex: 10,
         padding: '20px'
       }}>
-        <div style={{ 
-          width: '100%', 
-          maxWidth: '440px', 
+        <div style={{
+          width: '100%',
+          maxWidth: '440px',
           padding: isMobile ? '40px 30px' : '0 40px',
           backgroundColor: isMobile ? 'rgba(255, 255, 255, 0.95)' : 'transparent',
           borderRadius: isMobile ? '24px' : '0',
@@ -100,15 +99,18 @@ function Login() {
             <h1 style={{ color: 'var(--primary, #2A3F54)', marginBottom: '12px', fontSize: isMobile ? '28px' : '36px', fontWeight: '800', letterSpacing: '-1px' }}>
               Caffissimo
             </h1>
-            <p style={{ color: '#718096', fontSize: '16px' }}>Admin Portal Access</p>
+            <p style={{
+              color: '#718096', boxShadow: isMobile ? 'none' : '-20px 0 40px rgba(0,0,0,0.08)',
+              fontSize: '16px'
+            }}>Admin Portal Access</p>
           </div>
-          
+
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             {error && (
-              <div style={{ 
-                padding: '12px', 
-                backgroundColor: '#FFF5F5', 
-                color: '#E53E3E', 
+              <div style={{
+                padding: '12px',
+                backgroundColor: '#FFF5F5',
+                color: '#E53E3E',
                 borderRadius: '8px',
                 fontSize: '14px',
                 border: '1px solid #FED7D7'
@@ -116,15 +118,15 @@ function Login() {
                 {error}
               </div>
             )}
-            
+
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               <label style={{ fontSize: '14px', fontWeight: '600', color: '#4A5568' }}>Email Address</label>
-              <input 
-                type="email" 
+              <input
+                type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="admin@caffissimo.com"
-                required 
+                required
                 style={{
                   width: '100%',
                   padding: '14px 16px',
@@ -148,17 +150,17 @@ function Login() {
                 }}
               />
             </div>
-            
+
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <label style={{ fontSize: '14px', fontWeight: '600', color: '#4A5568' }}>Password</label>
               </div>
-              <input 
-                type="password" 
+              <input
+                type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                required 
+                required
                 style={{
                   width: '100%',
                   padding: '14px 16px',
@@ -182,9 +184,9 @@ function Login() {
                 }}
               />
             </div>
-            
-            <button 
-              type="submit" 
+
+            <button
+              type="submit"
               disabled={loading}
               style={{
                 width: '100%',
@@ -209,7 +211,7 @@ function Login() {
           </form>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 
